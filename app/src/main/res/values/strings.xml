@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">PixabayImageFinder</string>
+    <string name="text_search_hint">Type to search images...</string>
+    <string name="button_search">Search</string>
+</resources>
