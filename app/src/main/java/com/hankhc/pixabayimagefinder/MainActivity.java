@@ -2,9 +2,9 @@ package com.hankhc.pixabayimagefinder;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
@@ -39,22 +39,16 @@ public class MainActivity extends AppCompatActivity {
             actionBar.setBackgroundDrawable(new ColorDrawable(Color.RED));
         }
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_main);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_image_list);
 
-        // Initialize a new String array
-        String[] colors = {
-                "Red", "Green", "Blue", "Yellow", "Magenta", "Cyan", "Orange",
-                "Aqua", "Azure", "Beige", "Bisque", "Brown", "Coral", "Crimson"
-        };
-
-        mLayoutManager = new StaggeredGridLayoutManager(LIST_SPAN_COUNT, StaggeredGridLayoutManager.VERTICAL);
+        mLayoutManager = new StaggeredGridLayoutManager(LIST_SPAN_COUNT,
+                StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        // Initialize a new instance of RecyclerView Adapter instance
-        mAdapter = new ColorAdapter(this.getApplicationContext(), colors);
-
-        // Set the adapter for RecyclerView
+        mAdapter = new ListAdapter(this.getApplicationContext());
         mRecyclerView.setAdapter(mAdapter);
+
+        mRecyclerView.setOnScrollListener(new ListScrollListener(this.getApplicationContext()));
     }
 
     @Override
