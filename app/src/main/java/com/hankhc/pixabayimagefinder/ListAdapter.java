@@ -10,27 +10,18 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by hankchiu on 16/7/2.
  */
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     private final Context mContext;
-    private final List<String> urls = new ArrayList<String>();
+    private final List<Map<String, String>> mData = new ArrayList<Map<String, String>>();
 
     public ListAdapter(Context context) {
         mContext = context;
-
-        // Ensure we get a different ordering of images on each run.
-        Collections.addAll(urls, TestData.URLS);
-        Collections.shuffle(urls);
-
-        // Triple up the list.
-        ArrayList<String> copy = new ArrayList<String>(urls);
-        urls.addAll(copy);
-        urls.addAll(copy);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -67,10 +58,21 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return urls.size();
+        return mData.size();
     }
 
     public String getItem(int position) {
-        return urls.get(position);
+        Map<String, String> data = mData.get(position);
+        if (data != null) {
+            return data.get("url");
+        } else {
+            return "";
+        }
+    }
+
+    public void setData(List<Map<String, String>> data) {
+        // Always clear old data.
+        mData.clear();
+        mData.addAll(data);
     }
 }

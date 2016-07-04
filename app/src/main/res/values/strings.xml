@@ -2,4 +2,6 @@
     <string name="app_name">PixabayImageFinder</string>
     <string name="text_search_hint">Type to search images...</string>
     <string name="button_search">Search</string>
+    <string name="progress_search">Searching photos on Pixabay...</string>
+    <string name="search_failed">Cannot find any photo on Pixabay using %1$s</string>
 </resources>
