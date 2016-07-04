@@ -168,10 +168,15 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected List<Map<String, String>> doInBackground(String... params) {
             if (params == null || params.length <= 0) {
-                return new ArrayList<>();
+                return null;
             }
 
             JSONObject jsonObject = JsonHelper.getJsonFromUrl(params[0]);
+            // TODO: Report different error state to user, e.g., no Internet connection.
+            if (jsonObject == null) {
+                return null;
+            }
+
             JSONArray jsonArray;
             ArrayList<Map<String, String>> list = new ArrayList<Map<String, String>>();
             try {
@@ -194,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(List<Map<String, String>> list) {
-            if (list.size() > 0) {
+            if (list != null && list.size() > 0) {
                 ((ListAdapter) mAdapter).setData(list);
                 mAdapter.notifyDataSetChanged();
             } else {

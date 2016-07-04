@@ -1,5 +1,6 @@
 package com.hankhc.pixabayimagefinder;
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import org.json.JSONException;
@@ -55,7 +56,9 @@ public class JsonHelper {
 
         JSONObject jsonObject = null;
         try {
-            jsonObject = new JSONObject(result);
+            if (!TextUtils.isEmpty(result)) {
+                jsonObject = new JSONObject(result);
+            }
         } catch (JSONException e) {
             Log.e(TAG, "Error parsing JSON data: " + e.toString());
         }
