@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private int mCurrentState = STATE_LIST;
 
     private static final int LIST_SPAN_COUNT = 1;
-    private static final int GRID_SPAN_COUNT = 3;
+    private static final int GRID_SPAN_COUNT = 2;
 
     private Context mContext;
     private RecyclerView mRecyclerView;
@@ -185,9 +185,9 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < jsonArray.length(); i++) {
                     Map<String, String> map = new ArrayMap<String, String>();
                     JSONObject object = jsonArray.getJSONObject(i);
-                    map.put("width", object.getString("previewWidth"));
-                    map.put("height", object.getString("previewHeight"));
-                    map.put("url", object.getString("previewURL"));
+                    map.put("width", object.getString("webformatWidth"));
+                    map.put("height", object.getString("webformatHeight"));
+                    map.put("url", object.getString("webformatURL"));
                     list.add(map);
                 }
             } catch (JSONException e) {

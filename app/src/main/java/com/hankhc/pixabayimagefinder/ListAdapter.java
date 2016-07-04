@@ -51,7 +51,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
                 .load(url)
                 .placeholder(R.drawable.ic_crop_original_black)
                 .error(R.drawable.ic_error_black)
-                .fit()
                 .tag(mContext)
                 .into(holder.mImgView);
     }
